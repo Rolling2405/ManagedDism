@@ -18,7 +18,7 @@ namespace Microsoft.Dism.Tests
         }
 
         [Fact]
-        public async Task RemovePackageByNameAsync_CompletesSuccessfully()
+        public async Task RemovePackageByNameAsync_ThrowsDismException()
         {
             using DismSession session = DismApi.OpenOnlineSession();
 
@@ -55,7 +55,7 @@ namespace Microsoft.Dism.Tests
         }
 
         [Fact]
-        public async Task RemovePackageByPathAsync_CompletesSuccessfully()
+        public async Task RemovePackageByPathAsync_ThrowsDismException()
         {
             using DismSession session = DismApi.OpenOnlineSession();
 
@@ -89,15 +89,6 @@ namespace Microsoft.Dism.Tests
             catch (DismException)
             {
             }
-        }
-
-        private sealed class SynchronousProgress<T> : IProgress<T>
-        {
-            private readonly Action<T> _handler;
-
-            public SynchronousProgress(Action<T> handler) => _handler = handler;
-
-            public void Report(T value) => _handler(value);
         }
     }
 }

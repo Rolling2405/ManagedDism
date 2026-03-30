@@ -18,7 +18,7 @@ namespace Microsoft.Dism.Tests
         }
 
         [Fact]
-        public async Task EnableFeatureAsync_CompletesSuccessfully()
+        public async Task EnableFeatureAsync_ThrowsDismException()
         {
             using DismSession session = DismApi.OpenOnlineSession();
 
@@ -55,7 +55,7 @@ namespace Microsoft.Dism.Tests
         }
 
         [Fact]
-        public async Task EnableFeatureByPackageNameAsync_CompletesSuccessfully()
+        public async Task EnableFeatureByPackageNameAsync_ThrowsDismException()
         {
             using DismSession session = DismApi.OpenOnlineSession();
 
@@ -92,7 +92,7 @@ namespace Microsoft.Dism.Tests
         }
 
         [Fact]
-        public async Task EnableFeatureByPackagePathAsync_CompletesSuccessfully()
+        public async Task EnableFeatureByPackagePathAsync_ThrowsDismException()
         {
             using DismSession session = DismApi.OpenOnlineSession();
 
@@ -126,15 +126,6 @@ namespace Microsoft.Dism.Tests
             catch (DismException)
             {
             }
-        }
-
-        private sealed class SynchronousProgress<T> : IProgress<T>
-        {
-            private readonly Action<T> _handler;
-
-            public SynchronousProgress(Action<T> handler) => _handler = handler;
-
-            public void Report(T value) => _handler(value);
         }
     }
 }
